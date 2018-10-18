@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+</head>
+<body>
+<div>
+				<table>
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th>Salary</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="emp : ${emps}">
+							<td th:text="${emp.id}"></td>
+						    <td th:text="${emp.firstname}"></td>
+						    <td th:text="${emp.lastname}"></td>
+							<td th:text="${emp.phone}"></td>
+							<td th:text="${emp.email}"></td>
+							<td th:text="${emp.salary}"></td>
+							<td>
+								<form th:method="DELETE" th:action="@{/employee/{empId}(empId=${emp.id})}">
+									<button class="" type="submit">Delete､</button>
+								</form>
+							<td>
+							
+							<td>
+								Edit
+							<td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.training.dao.EmployeeDao">
+	<resultMap id="EmpResultMap" type="com.example.training.model.Employees">
+        <id property="id" column="emp_id"/>
+        <result property="firstname" column="emp_firstname"/>
+        <result property="lastname" column="emp_lastname"/>
+        <result property="phone" column="emp_phone"/>
+         <result property="email" column="emp_email"/>
+         <result property="salary" column="emp_salary"/>
+    </resultMap>
+
+	<select id="findAll" resultMap="EmpResultMap">
+        SELECT
+        	id as emp_id, 
+            firstname as emp_firstname, 
+			lastname as emp_lastname, 
+			phone as emp_phone,
+			email as emp_email,
+			salary as emp_salary
+        FROM employees 
+     
+    </select>
+    
+    <insert id="save">
+        INSERT INTO `employees` (firstname, lastname, phone, email, salary) VALUES (#{firstname}, #{lastname}, #{phone}, #{email}, #{salary})
+    </insert>
+    
+	<select id="findById" resultType="EmpResultMap">
+	 SELECT
+        	id as emp_id, 
+            firstname as emp_firstname, 
+			lastname as emp_lastname, 
+			phone as emp_phone,
+			email as emp_email,
+			salary as emp_salary
+        FROM employees 
+		FROM employees WHERE ID = #{id} 
+	</select>
+  
+	<update id="update" parameterType="com.example.training.model.Employees">
+        UPDATE employees SET 
+	        id = #{id},
+	        firstname = #{firstname}
+	        lastname = #{lastname}
+	        phone = #{phone}
+	        email = #{email}
+	        salary = #{salary}
+        WHERE id = #{id}
+    </update>
+	
+	<delete id="delete" parameterType="Long">
+        DELETE FROM employees WHERE id = #{id}
+    </delete>
+
+</mapper>
